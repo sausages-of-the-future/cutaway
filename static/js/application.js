@@ -4,7 +4,8 @@ subscribe.onmessage = function(message) {
 
   var data = JSON.parse(message.data);
 
-  $("#location-text").append('<p> request from: ' + data.application + ' for service: ' + data.text + '</p>' );
+  // Do whatever with the data to update the page
+  $("#location-text").append('<p> from: ' + data.application + ' to : ' + data.message + '</p>' );
 
 };
 
