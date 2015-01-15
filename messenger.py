@@ -62,9 +62,6 @@ messenger.start()
 def index():
     return render_template('index.html')
 
-@app.route('/graph')
-def graph():
-    return render_template('graph.html')
 
 @sockets.route('/subscribe')
 def subscribe(ws):

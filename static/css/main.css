@@ -1,0 +1,23 @@
+p {
+    padding: 10px;
+}
+
+p, i {
+    color: #FFFFFF;
+}
+
+i {
+    float: right;
+}
+
+.registry {
+  background: #DE770F;
+}
+
+.fishing  {
+  background: #008CBA;
+}
+
+.payment  {
+  background: #43AC6A;
+}
