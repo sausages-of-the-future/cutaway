@@ -29,6 +29,9 @@
     <script type="text/javascript" src="static/js/vendor/jquery.js"></script>
     <script type="text/javascript" src="static/js/vendor/reconnecting-websocket.min.js"></script>
     <script src="static/js/vendor/foundation.min.js"></script>
+    <script type="text/javascript">
+      var subscribe = new ReconnectingWebSocket("{{ws_protocol}}://"+ location.host + "/subscribe");
+    </script>
     <script type="text/javascript" src="static/js/application.js"></script>
     <script>
       $(document).foundation();
