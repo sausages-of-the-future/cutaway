@@ -3,11 +3,14 @@
 // connections made based on env variabl
 
 var extractAppName = function(url){
-    var appname = url.split('//')[1].split('.')[0]; // ouch
-    if (appname.search('-gov') == -1){
-        appname += '-gov'
+    if (url.substring(0,4) === 'http') {
+        var appname = url.split('//')[1].split('.')[0]; // ouch
+        if (appname.search('-gov') == -1){
+            appname += '-gov'
+        }
+        return appname;
     }
-    return appname;
+    return url;
 };
 
 subscribe.onmessage = function(message) {
@@ -21,11 +24,14 @@ subscribe.onmessage = function(message) {
             from = $('<p class="medium-6 column">' + origin_app + '<i class="fi-arrow-right"></i></p>'),
             to = $('<p class="medium-6 column">' + destination_app + '</p>');
 
-    from.addClass(origin_app);
-    to.addClass(destination_app);
-    row.append(from).append(to);
-    $("#log").append(row);
+    if(origin_app !== destination_app && destination_url !== destination_app) {
+        from.addClass(origin_app);
+        to.addClass(destination_app);
 
+        $("#log").append(row);
+        row.append(from).hide().fadeIn(500);
+        row.append(to).hide().fadeIn(500);
+    }
 };
 
 subscribe.onclose = function(){
