@@ -1,4 +1,4 @@
-var subscribe = new ReconnectingWebSocket("ws://"+ location.host + "/subscribe");
+var subscribe = new ReconnectingWebSocket("wss://"+ location.host + "/subscribe");
 
 subscribe.onmessage = function(message) {
 
