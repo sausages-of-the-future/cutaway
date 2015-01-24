@@ -63,6 +63,11 @@ def index():
     ws_protocol = os.environ.get('WS_PROTOCOL', 'wss')
     return render_template('index.html', ws_protocol=ws_protocol)
 
+@app.route('/city')
+def city():
+    ws_protocol = os.environ.get('WS_PROTOCOL', 'wss')
+    return render_template('city.html', ws_protocol=ws_protocol)
+
 
 @sockets.route('/subscribe')
 def subscribe(ws):

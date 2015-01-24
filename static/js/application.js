@@ -38,3 +38,7 @@ subscribe.onclose = function(){
     console.log('subscribe closed');
     this.subscribe = new WebSocket(subscribe.url);
 };
+
+$(window).on('beforeunload', function(){
+    socket.close();
+});
