@@ -92,12 +92,12 @@
 </script>
 
 <script>
-    var highlight = function(destinationApp){
-        switch(destinationApp){
+    var highlight = function(app){
+        switch(app){
             case 'fishing':
                 service('fishing', 'pink');
                 break;
-            case 'startorganisation':
+            case 'organisation':
                 service('startorganisation', 'green');
                 break;
             case 'registry':
@@ -111,26 +111,20 @@
         }
     };
 
-    var extractAppName = function(url){
-        if (url.substring(0,4) === 'http') {
-            var appname = url.split('//')[1].split('.')[0]; // ouch
-            if (appname.search('-gov') == -1){
-                appname = appname.split('-gov')[0];
-            }
-            return appname;
-        }
-        return url;
-    };
-
     subscribe.onmessage = function(message) {
 
       var data = JSON.parse(message.data),
-                originUrl = data['origin_url'],
-                destinationUrl = data['destination_url'],
-                originApp = extractAppName(originUrl),
-                destinationApp = extractAppName(destinationUrl);
+                currentLocation = data['currentLocation'],
+                service = data['service'];
 
-                highlight(destinationApp);
+                // www app passes a service name
+                // otherwise highlight based on currently active app
+                if(service){
+                    highlight(service);
+                }
+                else {
+                    highlight(currentLocation);
+                }
 
     };
 
