@@ -18,7 +18,6 @@ app.debug = 'DEBUG' in os.environ
 sockets = Sockets(app)
 redis = redis.from_url(REDIS_URL)
 
-
 class Messenger(object):
 
     def __init__(self):
@@ -58,12 +57,12 @@ class Messenger(object):
 messenger = Messenger()
 messenger.start()
 
-@app.route('/')
-def index():
+@app.route('/old')
+def old():
     ws_protocol = os.environ.get('WS_PROTOCOL', 'wss')
     return render_template('index.html', ws_protocol=ws_protocol)
 
-@app.route('/city')
+@app.route('/')
 def city():
     ws_protocol = os.environ.get('WS_PROTOCOL', 'wss')
     return render_template('city.html', ws_protocol=ws_protocol)
