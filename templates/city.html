@@ -110,7 +110,10 @@
             case 'fishing':
                 service('fishing', 'pink');
                 break;
-            case 'organisation':
+            case 'www':
+                service('www', 'blue');
+                break;
+            case 'organisations':
                 service('startorganisation', 'green');
                 break;
             case 'registry':
@@ -120,24 +123,17 @@
             case 'payment':
                 platform('payment')
                 break;
+            case 'sms':
+                platform('sms')
+                break;
             //etc
         }
     };
 
     subscribe.onmessage = function(message) {
-
-      var data = JSON.parse(message.data),
-                currentLocation = data['currentLocation'],
-                service = data['service'];
-
-                // www app passes a service name
-                // otherwise highlight based on currently active app
-                if(service){
-                    highlight(service);
-                }
-                else {
-                    highlight(currentLocation);
-                }
+        var data = JSON.parse(message.data),
+                active = data['active'];
+        highlight(active);
 
     };
 
@@ -155,9 +151,11 @@
 <div style="display:none;">
     <button onclick="service('fishing', 'pink');">Highlight Fishing</button>
     <button onclick="service('startorganisation', 'green');">Highlight Start Organisation</button>
+    <button onclick="service('www', 'blue');">Highlight WWW</button>
     <button onclick="resetServices();">Reset services</button>
     <button onclick="permissions();">Highlight Permissions</button>
     <button onclick="platform('payment');">Highlight payment</button>
+    <button onclick="platform('sms');">Highlight SMS</button>
     <button onclick="resetPlatforms();">Reset platforms</button>
     <button onclick="registry('licences');">Highlight licences registry</button>
     <button onclick="resetRegistries();">Reset registries</button>
@@ -419,7 +417,7 @@
     <polygon fill="#808285" points="313.359,229.566 456.771,352.646 460.644,354.885 460.642,359.363 313.359,444.396
         127.318,336.985 127.318,332.509     "/>
 </g>
-<g>
+<g id="sms" class="platform">
     <polygon fill="#BCBEC0" points="313.359,225.091 456.771,352.646 460.644,354.885 313.359,439.919 127.318,332.509     "/>
 </g>
 <polygon fill="#808285" points="499.403,328.034 499.403,323.558 437.388,292.223 251.349,395.165 251.349,399.641 313.359,435.445
@@ -894,7 +892,7 @@
 <polygon fill="#A7A9AC" points="290.085,272.121 282.326,267.643 282.326,195.948 290.085,200.427 "/>
 <polygon fill="#808285" points="290.085,272.121 297.841,267.642 297.841,195.963 290.085,200.44 "/>
 <polygon fill="#D1D3D4" points="290.085,191.483 297.844,195.963 290.085,200.44 282.326,195.963 "/>
-<g>
+<g id="www" class="service">
     <polygon fill="#A7A9AC" points="313.354,281.077 297.841,272.119 297.841,182.534 313.357,191.493     "/>
     <polygon fill="#808285" points="313.354,281.077 328.874,272.106 328.874,182.534 313.357,191.493     "/>
     <polygon fill="#D1D3D4" points="313.357,173.575 328.874,182.534 313.357,191.493 297.841,182.534     "/>
