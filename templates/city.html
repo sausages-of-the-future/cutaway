@@ -72,6 +72,12 @@
 
     function service(service_name, color){
 
+        //reset everything on new service
+        resetServices();
+        resetPlatforms();
+        resetRegistries();
+        permissions(false);
+
         colors = {
             "pink": ['#df62a4', '#b81385', '#f286b6'],
             "orange": ['#faa519', '#e7781e', '#ffc732'],
@@ -92,6 +98,7 @@
 </script>
 
 <script>
+
     var highlight = function(destinationApp){
         switch(destinationApp){
             case 'fishing':
