@@ -118,6 +118,11 @@
                 break;
             case 'registry':
                 permissions();
+                break;
+            case 'organisations_registry':
+                registry('organisations_registry');
+                break;
+            case 'licences':
                 registry('licences');
                 break;
             case 'payment':
@@ -134,7 +139,6 @@
         var data = JSON.parse(message.data),
                 active = data['active'];
         highlight(active);
-
     };
 
     subscribe.onclose = function(){
